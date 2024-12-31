@@ -263,7 +263,7 @@ class Reader(object):
                 for reply in grouping[1]:
                     msgtext = reply._message.get("text")
                     if not msgtext or not reply.is_thread_msg:
-                        reply._message["text"] = "**Thread Reply:** {}".format(msgtext)
+                        #reply._message["text"] = "**Thread Reply:** {}".format(msgtext)
                         reply.is_thread_msg = True
 
                     channel_data[channel_name].insert(location, reply)

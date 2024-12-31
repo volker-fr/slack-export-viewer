@@ -12,6 +12,9 @@
 {%- endmacro %}
 
 {% macro render_message(message, preview_size=None, no_external_references=False) -%}
+{% if not message.is_recent_msg and message.is_thread_msg %}
+...
+{% else %}
     <div class="message-container{%if message.subtype %} {{message.subtype}} {%endif%}">
         <div id="{{ message.id }}">
             {% if not message.is_recent_msg %}
@@ -23,14 +26,11 @@
                 <div class="reply">
             {% endif %}
             {% if not no_external_references and not message.is_thread_msg %}
-                {% if message.img %}<img src="{{ message.img }}" class="user_icon" />{%else%}<div class="user_icon"></div>{%endif%}
-            {% elif not no_external_references and message.is_thread_msg %}
-                {% if message.img %}<img src="{{ message.img }}" class="user_icon_reply" />{%else%}<div class="user_icon_reply"></div>{%endif%}
             {% endif %}
                 <div class="username">{{ message.username }}
                     {%if message.user.email%} <span class="print-only user-email">({{message.user.email}})</span>{%endif%}
                 </div>
-                <a href="#{{ message.id}}"><div class="time">{{ message.time }}</div></a>
+                <a href="{{ message.permalink }}"><div class="time">{{ message.time }}</div></a>
                 <div class="msg">
                     {{ message.msg|safe }}
                     {% for attachment in message.attachments -%}
@@ -80,13 +80,10 @@
                             {%endif%}
                         </div>
                     {% endfor %}
-                    {% for reaction in message.reactions %}
-                        <div class="message-reaction">
-                        {{ reaction.name }} {{ reaction.usernames|join(', ') }}
-                        </div>
-                    {% endfor %}
 		</div>
             </div>
         </div>
     </div>
+{%- endif %}
 {%- endmacro %}
+

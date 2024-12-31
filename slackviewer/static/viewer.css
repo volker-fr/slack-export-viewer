@@ -71,6 +71,7 @@ body {
 .message-container {
     clear: left;
     min-height: 56px;
+    margin-top: 0.4em;
 }
 
 .message-container:first-child {
@@ -78,7 +79,7 @@ body {
 }
 
 .message-container:last-child {
-    margin-bottom: 20px;
+    margin-bottom: 120px;
 }
 
 .message-container .user_icon {

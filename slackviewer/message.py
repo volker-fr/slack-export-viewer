@@ -89,6 +89,13 @@ class Message(object):
         text = self._message.get("text")
         if text:
             text = self._formatter.render_text(text)
+            # remove trailing and ending <p>...</p> tags
+            if text.startswith("<p>"):
+                text = text[3:]
+            if text.endswith("</p>"):
+                text = text[:-4]
+            text = text.replace("<p>", "<br><br>\n")
+            text = text.replace("</p>", "")
         return text
 
     def user_message(self, user_id):
