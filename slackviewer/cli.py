@@ -34,11 +34,11 @@ def clean(wet):
 
 @cli.command(help="Generates a single-file printable export for an archive file or directory")
 @click.option('--debug', is_flag=True, default=flag_ennvar("FLASK_DEBUG"))
-@click.option('--show-dms', is_flag=True, default=False, help="Show direct messages")
+@click.option('--show-dms/--no-show-dms', default=False, help="Show/Hide direct messages", envvar='SHOW_DMS')
 @click.option("--since", default=None, type=click.DateTime(formats=["%Y-%m-%d"]),
-              help="Only show messages since this date.")
+              help="Only show messages since this date.", envvar='SINCE')
 @click.option('--skip-channel-member-change', is_flag=True, default=False, envvar='SKIP_CHANNEL_MEMBER_CHANGE', help="Hide channel join/leave messages")
-@click.option("--template", default=None, type=click.File('r'), help="Custom single file export template")
+@click.option("--template", default=None, type=click.File('r'), help="Custom single file export template", envvar='TEMPLATE')
 @click.option("--hide-channels", default=None, type=str, help="Comma separated list of channels to hide.", envvar="HIDE_CHANNELS")
 @click.argument('archive')
 def export(**kwargs):

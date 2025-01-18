@@ -29,7 +29,7 @@ def configure_app(app, config):
     top.dm_users = []
     top.mpims = {}
     top.mpim_users = []
-    if not config.skip_dms:
+    if config.show_dms:
         top.dms = reader.compile_dm_messages()
         top.dm_users = reader.compile_dm_users()
         top.mpims = reader.compile_mpim_messages()
@@ -73,8 +73,8 @@ def configure_app(app, config):
 @click.option("--html-only", is_flag=True, default=False,
               help="If you want static HTML only, set this.")
 @click.option("--since", default=None, type=click.DateTime(formats=["%Y-%m-%d"]),
-              help="Only show messages since this date.")
-@click.option('--skip-dms', is_flag=True, default=False, help="Hide direct messages")
+              help="Only show messages since this date.", envvar='SINCE')
+@click.option('--show-dms/--no-show-dms', default=False, help="Show/Hide direct messages", envvar='SHOW_DMS')
 @click.option('--skip-channel-member-change', is_flag=True, default=False, envvar='SKIP_CHANNEL_MEMBER_CHANGE', help="Hide channel join/leave messages")
 @click.option("--hide-channels", default=None, type=str, help="Comma separated list of channels to hide.", envvar="HIDE_CHANNELS")
 def main(**kwargs):

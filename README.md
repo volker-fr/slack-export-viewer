@@ -62,7 +62,7 @@ Options:
   -o, --output-dir PATH         Output directory for static HTML files.
   --html-only                   If you want static HTML only, set this.
   --since [%Y-%m-%d]            Only show messages since this date.
-  --skip-dms                    Hide direct messages
+  --show-dms / --no-show-dms    Show/Hide direct messages
   --skip-channel-member-change  Hide channel join/leave messages
   --hide-channels TEXT          Comma separated list of channels to hide.
   --help                        Show this message and exit.
@@ -121,14 +121,14 @@ Usage: cli.py export [OPTIONS] ARCHIVE_DIR
 
 Options:
   --debug
-  --show-dms                    Show direct messages
+  --show-dms / --no-show-dms    Show/Hide direct messages
   --since [%Y-%m-%d]            Only show messages since this date.
   --skip-channel-member-change  Hide channel join/leave messages
   --template FILENAME           Custom single file export template
   --hide-channels TEXT          Comma separated list of channels to hide.
   --help                        Show this message and exit.
-
 ```
+
 An example template can be found in the repositories [`slackviewer/templates/example_template_single_export.html`](https://github.com/hfaran/slack-export-viewer/tree/master/slackviewer/templates/example_template_single_export.html) file
 
 Clean
